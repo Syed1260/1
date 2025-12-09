@@ -1,5 +1,6 @@
 // In Progress Orders Management - JavaScript with ENHANCED Print Worker Slip
 // UPDATED: Shows ALL 47 fields, measurements, designs, worker & cutter names
+// UPDATED: Pricing section removed from print slip
 
 // 1. Firebase Configuration
 const firebaseConfig = {
@@ -262,7 +263,7 @@ function displayInProgressOrders(ordersToDisplay) {
     });
 }
 
-// ENHANCED Print Worker Slip - Shows ALL Details including 47 fields, worker & cutter
+// ENHANCED Print Worker Slip - Shows ALL Details including 47 fields, worker & cutter (NO PRICING)
 function printWorkerSlip(orderId) {
     const order = allOrders.find(o => o.orderId === orderId);
     if (!order) {
@@ -420,24 +421,7 @@ function printWorkerSlip(orderId) {
         </div>
     `;
     
-    // Add pricing information
-    slipContent += `
-        <div class="slip-section">
-            <div class="slip-section-title">قیمت - PRICING</div>
-            <div class="slip-row">
-                <span class="slip-label">Total Amount (کل):</span>
-                <span class="slip-value">Rs. ${order.totalAmount.toFixed(2)}</span>
-            </div>
-            <div class="slip-row">
-                <span class="slip-label">Advance (پیشگی):</span>
-                <span class="slip-value">Rs. ${order.advancePaid.toFixed(2)}</span>
-            </div>
-            <div class="slip-row">
-                <span class="slip-label">Remaining (بقیہ):</span>
-                <span class="slip-value">Rs. ${order.remainingAmount.toFixed(2)}</span>
-            </div>
-        </div>
-    `;
+    // PRICING SECTION REMOVED - No prices on worker slip
     
     // Add special notes if available
     if (order.specialNotes && order.specialNotes.trim() !== '') {
